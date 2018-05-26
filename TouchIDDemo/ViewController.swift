@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         authenticateUserWithBiometrics(context: self.context)
     }
     
-     ## 3 write the function of authentication 
+    /* ## 3 write the function of authentication */ 
     // if user fallback, it will forward to ios build-in password input UI
     func authenticateUser(context:LAContext) {
         // Declare a NSError variable.
@@ -77,6 +77,9 @@ class ViewController: UIViewController {
                                             // 若是選 deviceOwnerAuthenticationWithBiometrics
                                             // 那你就要自己處理輸入密碼的介面，你可以彈一個 input text alert 出來
                                             print("User selected to enter custom password")
+                                            // https://stackoverflow.com/questions/38379125/touchid-activatetouchwithresponse-returns-success-without-requesting-fingerprint
+                                            // 若驗證成功，之後再用同一個 context 呼叫驗證，都會直接回傳成功，若想要每次
+                                            // 呼叫都跳出驗證，就要每次都建新的 context
                                         default:
                                             print("Authentication failed")
                                         }
